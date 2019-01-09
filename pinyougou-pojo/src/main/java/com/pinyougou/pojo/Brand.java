@@ -2,40 +2,45 @@ package com.pinyougou.pojo;
 
 import java.io.Serializable;
 
-/**
- * @Package: com.pinyougou.pojo
- * @ClassName: CLASS_NAME
- * @Description: TODO(这里用一句话描述这个类的作用)
- * @Author: LiuXiaoQiang
- * @Date: Created in 2018/12/26 0026  时间: 11:16
- * < >
- **/
-public class Brand implements Serializable{
-    private long id;
-    private String name;
-    private String firstChar;
+import javax.persistence.*;
 
-    public long getId() {
+/**
+ * 品牌实体类
+ * @author LEE.SIU.WAH
+ * @email lixiaohua7@163.com
+ * @date 2017年12月1日 下午4:59:52
+ * @version 1.0
+ */
+@Table(name="tb_brand")
+public class Brand implements Serializable{
+	private static final long serialVersionUID = -8315881228799842049L;
+	/** 主键ID */
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
+	private Long id;
+	/** 品牌名称 */
+	@Column(name="name")
+    private String name;
+    /** 品牌首字母 */
+	@Column(name="first_char")
+    private String firstChar;
+    /** setter and getter method */
+    public Long getId() {
         return id;
     }
-
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
-        this.name = name;
+        this.name = name == null ? null : name.trim();
     }
-
     public String getFirstChar() {
         return firstChar;
     }
-
     public void setFirstChar(String firstChar) {
-        this.firstChar = firstChar;
+        this.firstChar = firstChar == null ? null : firstChar.trim();
     }
 }

@@ -6,6 +6,7 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
     <!-- 配置数据源 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
           destroy-method="close">
@@ -37,6 +38,12 @@
         <property name="basePackage" value="com.pinyougou.mapper"/>
     </bean>
 
+    <!--配置通用Mapper 集成spring4-->
+    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.pinyougou.mapper"/>
+    </bean>
+
+
     <!-- 配置数据源事务管理器(DataSourceTransactionManager) -->
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -45,4 +52,5 @@
 
     <!-- 配置开启事务注解驱动，由于dubbo用@service注解暴露服务，业务层需要加事务会产生代理对象，需设置proxy-target-class为true采用cglib产生代理 -->
     <tx:annotation-driven proxy-target-class="true"/>
+
 </beans>

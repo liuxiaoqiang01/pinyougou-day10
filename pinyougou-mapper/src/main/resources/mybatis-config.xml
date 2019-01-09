@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
     <!--全局的设置信息-->
@@ -8,4 +9,19 @@
     <setting name="mapUnderscoreToCamelCase" value="true"/>
 </settings>
 
+
+    <!--配置分页插件-->
+    <plugins>
+
+        <!-- 配置分页拦截器(拦截 SqL 语句，在你的 sql 语句后面加上 limit)-->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+
+            <!--指定数据库方言(使用哪种数据库: mysql、 oracle、 sqlserver 等)-->
+            <property name="helperDialect" value="mysql"></property>
+
+            <!--配置开启统计查询: count-->
+            <property name="rowBoundsWithCount" value="true"></property>
+        </plugin>
+    </plugins>
+    
 </configuration>
